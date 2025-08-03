@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abendrih <abendrih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 21:15:40 by abendrih          #+#    #+#             */
-/*   Updated: 2025/07/28 02:12:16 by abendrih         ###   ########.fr       */
+/*   Created: 2025/08/03 21:40:09 by abendrih          #+#    #+#             */
+/*   Updated: 2025/08/03 21:40:56 by abendrih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int	ft_atol(const char *str)
 {
-	t_list	*mouv;
-	t_list	*recip;
+	size_t	i;
+	long		signe;
+	long		result;
 
-	if (!lst || !del)
-		return ;
-	mouv = *lst;
-	while (mouv)
+	i = 0;
+	signe = 1;
+	result = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		recip = mouv->next;
-		del(mouv->content);
-		free(mouv);
-		mouv = recip;
+		if (str[i] == '-')
+			signe *= -1;
+		i++;
 	}
-	*lst = (NULL);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	return (result * signe);
 }
