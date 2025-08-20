@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abendrih <abendrih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 21:10:29 by abendrih          #+#    #+#             */
-/*   Updated: 2025/07/28 02:12:19 by abendrih         ###   ########.fr       */
+/*   Created: 2025/08/19 02:01:16 by abendrih          #+#    #+#             */
+/*   Updated: 2025/08/20 22:26:52 by abendrih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_error(int fd, char *name_error)
 {
-	if (lst && del)
-	{
-		del(lst->content);
-		free(lst);
-	}
+	write(fd, "Error : ", 8);
+	ft_printf("%s", name_error);
 }
